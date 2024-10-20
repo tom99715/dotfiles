@@ -10,10 +10,9 @@ fi
 # Set paths and configurations based on the detected OS
 case $OS in
     linux)
-        # Paths for Linux systems (Raspberry Pi OS, Ubuntu, Kali)
-        HOMEBREW_PREFIX="$HOME/.linuxbrew"
+        # Paths for Linux systems 
         ZSH_AUTOCOMPLETE_PATH="$HOME/.zsh/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-        POWERLEVEL10K_PATH="$HOME/.zsh/share/powerlevel10k/powerlevel10k.zsh-theme"
+        POWERLEVEL10K_PATH="$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
         ZSH_SYNTAX_HIGHLIGHTING_PATH="$HOME/.zsh/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
         ;;
     macos)

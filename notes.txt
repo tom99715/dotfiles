@@ -1,2 +1,8 @@
-TODO
+TODO:
+----------------------
+Finish setting up RasPi and linux VMs
+----------------------
+Finish setting up win11 desktop + VM
+----------------------
+Update newSystemChecklist for linux and windows
 

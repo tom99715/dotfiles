@@ -1,0 +1,39 @@
+Install the following packages: 
+
+tmux tree btop fastfetch neovim cmatrix docker lua powerlevel10k luarocks zsh-autocomplete zsh-syntax-highlighting gh git ranger
+----------------------
+Install oh-my-zsh:
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+----------------------
+Install TPM:
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+----------------------
+Install fonts from font folder in .config
+----------------------
+Create symlinks for zshrc and pl10k 
+----------------------
+Check Firefox extension settings, make sure uBlock and Dark Reader are syncing 
+----------------------
+MAC ONLY
+
+Enable Touch ID for sudo commands with this command:
+
+sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
+
+--
+Install Kitty:
+
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+--
+Install Rye:
+
+curl -sSf https://rye.astral.sh/get | bash
+----------------------
+LINUX ONLY
+
+----------------------
+WINDOWS ONLY
+
+
