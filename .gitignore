@@ -1,0 +1,12 @@
+.DS_Store
+
+coc/extensions/
+
+gh/*
+!gh/.gitkeep
+
+github-copilot/*
+!github-copilot/.gitkeep
+
+jgit/*
+!jgit/.gitkeep
