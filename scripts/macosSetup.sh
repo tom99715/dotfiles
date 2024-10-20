@@ -112,10 +112,13 @@ if [ -d "$CONFIG_DIR" ]; then
                 echo "Failed to create symbolic link for $(basename "$link"): An unknown type of file exists."
             fi
         else
-            ln -s "$target" "$link" || echo "Failed to create symbolic link for $(basename "$link")"
+            if ln -s "$target" "$link"; then
+                echo "$(basename "$link") symlink created."
+            else
+                echo "Failed to create symbolic link for $(basename "$link")"
+            fi
         fi
     }
-
     # Creating symbolic links for .zshrc, .zprofile, and .p10k.zsh
     create_symlink "$CONFIG_DIR/zsh/.zshrc" "$HOME/.zshrc"
     create_symlink "$CONFIG_DIR/zsh/.zprofile" "$HOME/.zprofile"
@@ -126,8 +129,17 @@ else
     echo "$CONFIG_DIR does not exist. Please ensure the .config directory exists."
 fi
 
+echo ""
+echo "----- Enabling Touch ID in Terminal -----"
+
 # Enable touch ID for sudo commands
-sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
+if sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local >/dev/null; then
+    echo "Touch ID for sudo successfully enabled."
+else
+    echo "Failed to enable Touch ID for sudo. Please check for errors and try again."
+fi
+
+echo ""
 
 echo "Setup complete! Run tmux, prefix + I to install plugins."
 
