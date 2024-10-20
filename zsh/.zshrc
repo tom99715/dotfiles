@@ -1,9 +1,41 @@
+# Detect the operating system
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    OS="linux"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    OS="macos"
+else
+    OS="other"
+fi
+
+# Set paths and configurations based on the detected OS
+case $OS in
+    linux)
+        # Paths for Linux systems (Raspberry Pi OS, Ubuntu, Kali)
+        HOMEBREW_PREFIX="$HOME/.linuxbrew"
+        ZSH_AUTOCOMPLETE_PATH="$HOME/.zsh/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+        POWERLEVEL10K_PATH="$HOME/.zsh/share/powerlevel10k/powerlevel10k.zsh-theme"
+        ZSH_SYNTAX_HIGHLIGHTING_PATH="$HOME/.zsh/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+        ;;
+    macos)
+        # Paths for macOS
+        HOMEBREW_PREFIX="/opt/homebrew"
+        ZSH_AUTOCOMPLETE_PATH="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+        POWERLEVEL10K_PATH="$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+        ZSH_SYNTAX_HIGHLIGHTING_PATH="$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+        ;;
+    *)
+        echo "Unsupported OS detected. Some features may not work correctly."
+        ;;
+esac
+
 # Enable zsh-autocomplete permanently
-source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+if [ -f "$ZSH_AUTOCOMPLETE_PATH" ]; then
+    source "$ZSH_AUTOCOMPLETE_PATH"
+else
+    echo "zsh-autocomplete not found at $ZSH_AUTOCOMPLETE_PATH"
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -14,29 +46,20 @@ fi
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# Set name of the theme to load
 ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# zstyle ':omz:update' mode auto
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -54,9 +77,6 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -66,33 +86,9 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-source ~/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-# now load zsh-syntax-highlighting plugin
-
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -101,24 +97,28 @@ source ~/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 #   export EDITOR='nvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias kssh="kitten ssh"
 
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+# Enable Powerlevel10k theme
+if [ -f "$POWERLEVEL10K_PATH" ]; then
+    source "$POWERLEVEL10K_PATH"
+else
+    echo "Powerlevel10k theme not found at $POWERLEVEL10K_PATH"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load zsh-syntax-highlighting plugin
+if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]; then
+    source "$ZSH_SYNTAX_HIGHLIGHTING_PATH"
+else
+    echo "zsh-syntax-highlighting not found at $ZSH_SYNTAX_HIGHLIGHTING_PATH"
+fi
+
+# Source Oh My Zsh
+source $ZSH/oh-my-zsh.sh
+
+# Additional custom configuration can go below
+source ~/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
