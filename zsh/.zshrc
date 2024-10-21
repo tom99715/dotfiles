@@ -96,28 +96,39 @@ ZSH_THEME="robbyrussell"
 #   export EDITOR='nvim'
 # fi
 
-# Example aliases
-alias kssh="kitten ssh"
+#aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias kssh='kitten ssh'
+    alias sshPi5='kitten ssh tom-pi-5.local'
+    alias bUpdate='brew update && brew upgrade'
 
-# Enable Powerlevel10k theme
-if [ -f "$POWERLEVEL10K_PATH" ]; then
-    source "$POWERLEVEL10K_PATH"
-else
-    echo "Powerlevel10k theme not found at $POWERLEVEL10K_PATH"
-fi
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    alias aUpdate='sudo apt-get update && sudo apt-get upgrade'
+    
+    if grep -q "Ubuntu" /etc/os-release; then
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    elif grep -q "Raspbian" /etc/os-release; then
 
-# Load zsh-syntax-highlighting plugin
-if [ -f "$ZSH_SYNTAX_HIGHLIGHTING_PATH" ]; then
-    source "$ZSH_SYNTAX_HIGHLIGHTING_PATH"
-else
-    echo "zsh-syntax-highlighting not found at $ZSH_SYNTAX_HIGHLIGHTING_PATH"
-fi
+    elif grep -q "Kali" /etc/os-release; then
+        
+    fi
 
-# Source Oh My Zsh
-source $ZSH/oh-my-zsh.sh
 
-# Additional custom configuration can go below
-source ~/.config/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+#antigen setup 
+source $HOME/.antigen
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Syntax highlighting/autocomplete plugins
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle marlonrichert/zsh-autocomplete
+antigen bundle zsh-users/zsh-autosuggestions
+
+
+# Load the theme.
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+

@@ -1,27 +1,34 @@
 Install the following packages: 
 
-tmux tree btop fastfetch neovim cmatrix docker lua powerlevel10k luarocks zsh-autocomplete zsh-syntax-highlighting gh git ranger
-----------------------
-Install oh-my-zsh:
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+tmux tree btop neovim cmatrix docker luarocks gh git ranger 
 ----------------------
 Install TPM:
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ----------------------
+Install Antigen
+
+curl -L git.io/antigen > antigen.zsh
+----------------------
 Install fonts from font folder in .config
 ----------------------
 Create symlinks for zshrc and pl10k 
+
+ln -s ~/.config/zsh/.zshrc ~/.zshrc
+ln -s ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
+
 ----------------------
 Check Firefox extension settings, make sure uBlock and Dark Reader are syncing 
 ----------------------
 MAC ONLY
+--
+Create symlink for zprofile
 
+ln -s ~/.config/zsh/.zprofile ~/.zprofile
+--
 Enable Touch ID for sudo commands with this command:
 
 sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
-
 --
 Install Kitty:
 
@@ -31,8 +38,19 @@ Install Rye:
 
 curl -sSf https://rye.astral.sh/get | bash
 ----------------------
-LINUX ONLY
+RASPI ONLY
 
+Install ZSH:
+
+sudo apt-get update && sudo apt-get install zsh
+
+chsh -s $(which zsh)
+--
+Install fastfetch:
+
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.27.1/fastfetch-linux-aarch64.deb
+
+sudo apt install ./fastfetch-linux-aarch64.deb
 ----------------------
 WINDOWS ONLY
 
