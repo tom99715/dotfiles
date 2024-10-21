@@ -17,6 +17,7 @@ Create symlinks for zshrc and pl10k
 ln -s ~/.config/zsh/.zshrc ~/.zshrc
 ln -s ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
 
+Run source .zshrc and source .p10k.zsh when done
 ----------------------
 Check Firefox extension settings, make sure uBlock and Dark Reader are syncing 
 ----------------------

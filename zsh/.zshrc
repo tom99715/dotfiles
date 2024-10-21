@@ -12,6 +12,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -87,10 +90,8 @@ source $HOME/antigen.zsh
 antigen use oh-my-zsh
 
 # Syntax highlighting/autocomplete plugins
+antigen bundle marlonrichert/zsh-autocomplete@main
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle marlonrichert/zsh-autocomplete
-antigen bundle zsh-users/zsh-autosuggestions
-
 
 # Load the theme.
 antigen theme romkatv/powerlevel10k
