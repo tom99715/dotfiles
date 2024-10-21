@@ -105,14 +105,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias aUpdate='sudo apt-get update && sudo apt-get upgrade'
     
-    if grep -q "Ubuntu" /etc/os-release; then
+    OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
 
-    elif grep -q "Raspbian" /etc/os-release; then
-
-    elif grep -q "Kali" /etc/os-release; then
+    if [ "$OS_ID" = "ubuntu" ]; then
+        
+    elif [ "$OS_ID" = "debian" ]; then
+        
+    elif [ "$OS_ID" = "kali" ]; then
         
     fi
-
+fi
 
 #antigen setup 
 source $HOME/.antigen
