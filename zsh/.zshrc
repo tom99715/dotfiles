@@ -7,33 +7,6 @@ else
     OS="other"
 fi
 
-# Set paths and configurations based on the detected OS
-case $OS in
-    linux)
-        # Paths for Linux systems 
-        ZSH_AUTOCOMPLETE_PATH="$HOME/.zsh/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-        POWERLEVEL10K_PATH="$HOME/.powerlevel10k/powerlevel10k.zsh-theme"
-        ZSH_SYNTAX_HIGHLIGHTING_PATH="$HOME/.zsh/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        ;;
-    macos)
-        # Paths for macOS
-        HOMEBREW_PREFIX="/opt/homebrew"
-        ZSH_AUTOCOMPLETE_PATH="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-        POWERLEVEL10K_PATH="$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
-        ZSH_SYNTAX_HIGHLIGHTING_PATH="$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-        ;;
-    *)
-        echo "Unsupported OS detected. Some features may not work correctly."
-        ;;
-esac
-
-# Enable zsh-autocomplete permanently
-if [ -f "$ZSH_AUTOCOMPLETE_PATH" ]; then
-    source "$ZSH_AUTOCOMPLETE_PATH"
-else
-    echo "zsh-autocomplete not found at $ZSH_AUTOCOMPLETE_PATH"
-fi
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -41,15 +14,6 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load
-ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -117,7 +81,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 #antigen setup 
-source $HOME/.antigen
+source $HOME/antigen.zsh
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
