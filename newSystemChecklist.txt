@@ -8,6 +8,8 @@ tree btop cmatrix docker git ranger wakeonlan wireguard
 Install Antigen
 
 curl -L git.io/antigen > antigen.zsh
+
+Check .zshrc in repo for current plugin list
 ----------------------
 Create symlinks for zshrc and pl10k 
 
@@ -59,7 +61,6 @@ Git pull this repo into .config
 
 Copy over: btop, fastfetch, ranger, zsh dirs, delete the rest
 --
-
 Install ZSH:
 
 sudo apt-get update && sudo apt-get install zsh
