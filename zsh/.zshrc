@@ -64,6 +64,12 @@ fi
 # fi
 
 #aliases
+
+source ~/.config/zsh/.nasAlias
+
+alias wakeMain='wakeonlan $NAS_MAIN'
+alias wakeBackup='wakeonlan $NAS_BACKUP'
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias kssh='kitten ssh'
     alias sshPi5='kitten ssh tom-pi-5.local'
