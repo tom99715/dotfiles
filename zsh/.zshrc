@@ -67,10 +67,10 @@ fi
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias kssh='kitten ssh'
     alias sshPi5='kitten ssh tom-pi-5.local'
-    alias bUpdate='brew update && brew upgrade'
+    alias update='brew update && brew upgrade'
 
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    alias aUpdate='sudo apt-get update && sudo apt-get upgrade'
+    alias update='sudo apt-get update && sudo apt-get upgrade'
     
     OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
 
@@ -99,3 +99,7 @@ antigen theme romkatv/powerlevel10k
 # Tell Antigen that you're done.
 antigen apply
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

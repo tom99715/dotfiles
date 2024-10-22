@@ -11,7 +11,7 @@ curl -L git.io/antigen > antigen.zsh
 ----------------------
 Create symlinks for zshrc and pl10k 
 
-ln -s ~/.config/zsh/.zshrc ~/.zshrc
+ln -s ~/.config/zsh/.zshrc ~/.zshrc 
 ln -s ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
 
 Run source .zshrc and source .p10k.zsh when done
@@ -20,7 +20,7 @@ Check Firefox extension settings, make sure uBlock and Dark Reader are syncing
 ----------------------
 MAC
 --
-Install: 
+Install:
 
 tmux btop neovim luarocks gh git  
 --
@@ -44,6 +44,12 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 Install Rye:
 
 curl -sSf https://rye.astral.sh/get | bash
+--
+Install Node
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+
+nvm install 23
 ----------------------
 RASPI
 --
