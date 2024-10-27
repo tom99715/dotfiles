@@ -3,7 +3,7 @@ ALL
 
 Install: 
 
-tree btop cmatrix docker git ranger wakeonlan wireguard
+tree btop cmatrix docker git ranger wakeonlan
 ----------------------
 Install Antigen
 
@@ -18,7 +18,7 @@ ln -s ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
 
 Run source .zshrc and source .p10k.zsh when done
 
-Check .nasAlias is working
+Check .nasAlias exists and is working
 ----------------------
 Check Firefox extension settings, make sure uBlock and Dark Reader are syncing 
 ----------------------
@@ -27,6 +27,10 @@ MAC
 Install:
 
 tmux btop neovim luarocks gh git  
+
+--cask mactex 
+--cask --no-quarantine wine-stable
+softwareupdate --install-rosetta --agree-to-license
 --
 Create symlink for zprofile
 
@@ -37,6 +41,7 @@ Install TPM:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 --
 Install fonts from font folder in .config
+--
 Enable Touch ID for sudo commands with this command:
 
 sed -e 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local

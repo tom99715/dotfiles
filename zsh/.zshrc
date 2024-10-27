@@ -15,6 +15,63 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+
+
+#add mactex to path
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	export PATH="/Library/TeX/texbin:$PATH"
+fi
+
+#aliases
+
+source ~/.config/zsh/.nasAlias
+
+alias wakeMain='wakeonlan $NAS_MAIN'
+alias wakeBackup='wakeonlan $NAS_BACKUP'
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias kssh='kitten ssh'
+    alias sshPi5='kitten ssh tom-pi-5.local'
+    alias update='brew update && brew upgrade'
+
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    
+    OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
+
+    if [ "$OS_ID" = "ubuntu" ]; then
+    	alias update='sudo apt-get update && sudo apt-get upgrade'
+
+    elif [ "$OS_ID" = "debian" ]; then
+    	alias update='sudo apt-get update && sudo apt-get upgrade'
+    
+    elif [ "$OS_ID" = "kali" ]; then
+        
+    fi
+fi
+
+#antigen setup 
+source $HOME/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Syntax highlighting/autocomplete plugins
+antigen bundle marlonrichert/zsh-autocomplete@main
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#unused configs, move higher up in file when changing
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -62,50 +119,3 @@ fi
 # else
 #   export EDITOR='nvim'
 # fi
-
-#aliases
-
-source ~/.config/zsh/.nasAlias
-
-alias wakeMain='wakeonlan $NAS_MAIN'
-alias wakeBackup='wakeonlan $NAS_BACKUP'
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias kssh='kitten ssh'
-    alias sshPi5='kitten ssh tom-pi-5.local'
-    alias update='brew update && brew upgrade'
-
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    alias update='sudo apt-get update && sudo apt-get upgrade'
-    
-    OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')
-
-    if [ "$OS_ID" = "ubuntu" ]; then
-        
-    elif [ "$OS_ID" = "debian" ]; then
-        
-    elif [ "$OS_ID" = "kali" ]; then
-        
-    fi
-fi
-
-#antigen setup 
-source $HOME/antigen.zsh
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Syntax highlighting/autocomplete plugins
-antigen bundle marlonrichert/zsh-autocomplete@main
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load the theme.
-antigen theme romkatv/powerlevel10k
-
-# Tell Antigen that you're done.
-antigen apply
-
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
