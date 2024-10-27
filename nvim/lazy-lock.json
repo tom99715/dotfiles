@@ -4,7 +4,7 @@
   "copilot.lua": { "branch": "master", "commit": "f8d8d872bb319f640d5177dad5fbf01f7a16d7d0" },
   "lazy.nvim": { "branch": "main", "commit": "cf8ecc2c5e4332760431a33534240b0cbc6680ab" },
   "nerdtree": { "branch": "master", "commit": "9b465acb2745beb988eff3c1e4aa75f349738230" },
-  "nvim": { "branch": "main", "commit": "d9ee9a35f46f0a2bda9a15b5a763fee4095428fd" },
-  "nvim-treesitter": { "branch": "master", "commit": "48fc5d1dfe3dded8028826dfee7526e26212c73b" },
-  "vimtex": { "branch": "master", "commit": "f59b2784e8e4a2cce741cc697b403428af4cf131" }
+  "nvim": { "branch": "main", "commit": "cf021ebfb1e400a5fd1615cbda024308ca589b18" },
+  "nvim-treesitter": { "branch": "master", "commit": "46a6587a23eb842411e27f325280e8d7f71bd00a" },
+  "vimtex": { "branch": "master", "commit": "0785fd98af20f308ce6856f75a70a4ece9abab29" }
 }

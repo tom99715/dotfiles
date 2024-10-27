@@ -31,6 +31,9 @@ tmux btop neovim luarocks gh git
 --cask mactex 
 --cask --no-quarantine wine-stable
 softwareupdate --install-rosetta --agree-to-license
+--cask amethyst
+defaults write com.apple.dock workspaces-auto-swoosh -bool NO\nkillall Dock   
+brew install --cask skim                                       
 --
 Create symlink for zprofile
 
