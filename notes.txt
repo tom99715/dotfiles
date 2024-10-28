@@ -1,7 +1,5 @@
 TODO:
 ----------------------
-Set up Antigen on Mac + other systems
-----------------------
 Finish setting up RasPi and linux VMs
 ----------------------
 Finish setting up win11 desktop + VM

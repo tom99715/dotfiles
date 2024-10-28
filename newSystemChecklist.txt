@@ -3,7 +3,7 @@ ALL
 
 Install: 
 
-tree btop cmatrix docker git ranger wakeonlan
+tree btop cmatrix docker git ranger wakeonlan lazygit
 ----------------------
 Install Antigen
 
@@ -26,14 +26,10 @@ MAC
 --
 Install:
 
-tmux btop neovim luarocks gh git  
+tmux btop neovim luarocks gh git --cask mactex --cask --no-quarantine wine-stable --cask amethyst --cask skim                                       
 
---cask mactex 
---cask --no-quarantine wine-stable
-softwareupdate --install-rosetta --agree-to-license
---cask amethyst
 defaults write com.apple.dock workspaces-auto-swoosh -bool NO\nkillall Dock   
-brew install --cask skim                                       
+softwareupdate --install-rosetta --agree-to-license
 --
 Create symlink for zprofile
 
@@ -76,6 +72,8 @@ sudo apt-get update && sudo apt-get install zsh
 chsh -s $(which zsh)
 --
 Install fastfetch:
+
+Check most recent version, then:
 
 wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.27.1/fastfetch-linux-aarch64.deb
 
